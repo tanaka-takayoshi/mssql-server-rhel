@@ -5,6 +5,9 @@
 # Base OS layer: latest RHEL 7
 FROM registry.access.redhat.com/rhel7/rhel:latest
 
+# For SQLCMD installation
+ENV ACCEPT_EULA=Y 
+
 # Install latest mssql-server package
 # You don't have to register subscription if you build docker image on registered RHEL machine.
 # If you build on other machines, please fill in Red Hat subscription name and password and uncomment the below command.
