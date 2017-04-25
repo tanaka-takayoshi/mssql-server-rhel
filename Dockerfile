@@ -11,7 +11,9 @@ FROM registry.access.redhat.com/rhel7/rhel:latest
 #RUN subscription-manager register --username <your_username> --password <your_password> --auto-attach
 RUN yum install -y curl
 RUN curl https://packages.microsoft.com/config/rhel/7/mssql-server.repo > /etc/yum.repos.d/mssql-server.repo
-RUN yum install -y mssql-server
+RUN curl https://packages.microsoft.com/config/rhel/7/prod.repo > /etc/yum.repos.d/msprod.repo
+RUN yum install -y mssql-server mssql-server-agent mssql-server-fts
+RUN yum install -y mssql-tools unixODBC-devel
 
 # Default SQL Server TCP/Port
 EXPOSE 1433
@@ -22,3 +24,5 @@ RUN chmod a+x /opt/mssql/bin/sqlservr.sh
 
 # Run SQL Server process
 CMD /bin/bash /opt/mssql/bin/sqlservr.sh
+
+ENV PATH $PATH:/opt/mssql-tools/bin
