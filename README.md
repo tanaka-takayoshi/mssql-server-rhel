@@ -20,3 +20,11 @@ Running an image is essentially the same as running the Ubuntu-based SQL Server 
 ```
 $ docker run -e ACCEPT_EULA=Y -e SA_PASSWORD=<your_strong_password> -p 1433:1433 -d mssql-server-rhel
 ```
+
+## To run on OpenShift as a Docker build
+```
+$ export SQLSRV_NAME=SQLSERVER_RHEL_DEV
+$ oadm policy add-scc-to-user anyuid -z default
+$ oc new-app https://github.com/tanaka-takayoshi/mssql-server-rhel.git#openshift --name $SQLSRV_NAME
+$ oc env dc $SQLSRV_NAME ACCEPT_EULA=Y SA_PASSWORD=<PassWord>
+```
