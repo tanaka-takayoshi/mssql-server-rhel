@@ -16,7 +16,7 @@ RUN yum install -y curl
 RUN curl https://packages.microsoft.com/config/rhel/7/mssql-server.repo > /etc/yum.repos.d/mssql-server.repo
 RUN curl https://packages.microsoft.com/config/rhel/7/prod.repo > /etc/yum.repos.d/msprod.repo
 RUN yum install -y mssql-server mssql-server-agent mssql-server-fts
-RUN yum install -y mssql-tools unixODBC-devel
+RUN yum install -y mssql-tools 
 
 # Default SQL Server TCP/Port
 EXPOSE 1433
